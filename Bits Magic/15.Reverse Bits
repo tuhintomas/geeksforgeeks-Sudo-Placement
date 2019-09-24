@@ -1,0 +1,60 @@
+Given a 32 bit number x, reverse its binary form and print the answer in decimal.
+
+Input:
+The first line of input consists T denoting the number of test cases. T testcases follow. Each test case contains a
+single 32 bit integer
+
+Output:
+For each test case, in a new line, print the reverse of integer.
+
+Constraints:
+1 <= T <= 100
+0 <= x <= 4294967295
+
+Example:
+Input:
+2
+1
+5
+Output:
+2147483648
+2684354560
+
+Explanation:
+Testcase1:
+00000000000000000000000000000001 =1
+10000000000000000000000000000000 =2147483648
+
+
+
+
+
+
+def binary(n):
+    b=''
+    while n>0:
+        bit=str(n%2)
+        b=bit+b
+        n=n//2
+    return b
+def decimal(b):
+    num=0
+    for i in range(len(b)):
+        num=num*2+int(b[i])
+    return num
+    
+def reverseBits(n):
+    b=binary(n)
+    k=32-len(b)
+    while k>0:
+        b="0"+b
+        k-=1
+    res=""
+    for i in range(31,-1,-1):
+        res=res+b[i]
+    num=decimal(res)
+    return num
+t=int(input())
+for i in range(t):
+    n=int(input())
+    print(reverseBits(n))
